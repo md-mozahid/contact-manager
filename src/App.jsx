@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AddUser from './components/addUser'
 import ContactList from './components/contactList'
 
@@ -17,6 +17,18 @@ function App() {
   const handleDeleteUser = (userId) => {
     setUsers(users.filter((user) => user.id !== userId))
   }
+
+  // local storage
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users))
+  }, [users])
+
+  useEffect(() => {
+    const getUsers = JSON.parse(localStorage.getItem('users'))
+    if (getUsers) {
+      setUsers(getUsers)
+    }
+  }, [])
 
   return (
     <>

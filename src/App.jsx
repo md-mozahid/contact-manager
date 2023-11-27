@@ -20,15 +20,15 @@ function App() {
 
   // local storage
   useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users))
-  }, [users])
-
-  useEffect(() => {
-    const getUsers = JSON.parse(localStorage.getItem('users'))
-    if (getUsers) {
-      setUsers(getUsers)
+    const users = JSON.parse(localStorage.getItem('users'))
+    if (users) {
+      setUsers(users)
     }
   }, [])
+  
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users))
+  }, [users])
 
   return (
     <>

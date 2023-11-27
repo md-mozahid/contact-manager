@@ -1,11 +1,15 @@
-import Contact from "./contact"
+import Contact from './contact'
 
-const ContactList = () => {
+const ContactList = ({ users, handleDeleteUser }) => {
   return (
     <>
-      <div className="flex items-center border border-[#475569] p-2 rounded-md">
-        <Contact />
-      </div>
+      {users.map((user) => (
+        <div
+          key={user.id}
+          className="flex items-center border border-[#475569] p-2 rounded-md">
+          <Contact user={user} handleDeleteUser ={handleDeleteUser}/>
+        </div>
+      ))}
     </>
   )
 }

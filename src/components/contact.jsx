@@ -1,16 +1,17 @@
-import images from '../constant/images'
+import { images } from '../constant'
 
-const Contact = () => {
+const Contact = ({ user, handleDeleteUser }) => {
+  const { id, name, email } = user
   return (
     <>
-      <h3 className="flex-1">Name : MD Mozahid</h3>
-      <h3 className="flex-1">Email : example@gmail.com</h3>
+      <h3 className="flex-1">Name : {name}</h3>
+      <h3 className="flex-1">Email : {email}</h3>
       <div className="flex items-center justify-center gap-5 ">
         <button>
           <img className="" src={images.Edit} alt="edit" />
         </button>
-        <button>
-          <img className="" src={images.Delete} alt="edit" />
+        <button onClick={() => handleDeleteUser(id)}>
+          <img className="" src={images.Delete} alt="delete" />
         </button>
       </div>
     </>

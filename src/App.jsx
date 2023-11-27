@@ -1,34 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import AddUser from './components/addUser'
 import ContactList from './components/contactList'
+import userReducer from './components/userReducer'
 
 const initialUser = [{ id: 1, name: 'Md Muzahid', email: 'example@gmail.com' }]
 let nextId = 2
 
 function App() {
-  const [users, setUsers] = useState(initialUser)
+  const [users, dispatch] = useReducer(userReducer, initialUser)
 
   // handle add user
   const handleAddUser = (name, email) => {
-    setUsers([...users, { id: nextId++, name, email }])
+    dispatch({ type: 'added', id: nextId++, name, email })
   }
 
   // delete user
   const handleDeleteUser = (userId) => {
-    setUsers(users.filter((user) => user.id !== userId))
+    dispatch({ type: 'delete', id: userId })
   }
 
   // local storage
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users))
-  }, [users])
+  // useEffect(() => {
+  //   localStorage.setItem('users', JSON.stringify(users))
+  // }, [users])
 
-  useEffect(() => {
-    const getUsers = JSON.parse(localStorage.getItem('users'))
-    if (getUsers) {
-      setUsers(getUsers)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const getUsers = JSON.parse(localStorage.getItem('users'))
+  //   if (getUsers) {
+  //     setUsers(getUsers)
+  //   }
+  // }, [])
 
   return (
     <>

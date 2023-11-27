@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import { images } from '../constant'
+import { UserContext } from '../context/context'
 
-const Contact = ({ user, handleDeleteUser }) => {
+const Contact = ({ user }) => {
+  const { deleteUser } = useContext(UserContext)
   const { id, name, email } = user
   return (
     <>
@@ -10,7 +13,7 @@ const Contact = ({ user, handleDeleteUser }) => {
         <button>
           <img className="" src={images.Edit} alt="edit" />
         </button>
-        <button onClick={() => handleDeleteUser(id)}>
+        <button onClick={() => deleteUser(id)}>
           <img className="" src={images.Delete} alt="delete" />
         </button>
       </div>

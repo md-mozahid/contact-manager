@@ -1,4 +1,4 @@
-const addUser = (name, email) => {
+export const addUser = (name, email) => {
   dispatch({
     type: 'added',
     id: nextId++,
@@ -7,7 +7,7 @@ const addUser = (name, email) => {
   })
 }
 
-const deleteUser = (userId) => {
+export const deleteUser = (userId) => {
   dispatch({
     type: 'delete',
     id: userId,

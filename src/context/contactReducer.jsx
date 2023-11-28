@@ -1,44 +1,43 @@
-import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from "./actionTypes";
+let nextId = 1
 
-let nextId = 2;
-
-const contactReducer = (users, action) => {
-  const { type, payload } = action;
-  switch (type) {
+const contactReducer = (contacts, action) => {
+  switch (action.type) {
     // add contact
-    case ADD_CONTACT: {
-      let contactToAdd = {
-        id: nextId++,
-        ...payload,
-      };
-      return [contactToAdd, ...users];
+    case 'added': {
+      return [
+        ...contacts,
+        {
+          id: nextId++,
+          name: action.name,
+          email: action.email,
+        },
+      ]
     }
 
     // update contact
-    case UPDATE_CONTACT: {
-      const { id, updateContact } = payload;
-      const contacts = users.map((user) => {
-        if (user.id === id) {
+    case 'updated': {
+      const { id, updateContact } = payload
+      const contacts = contacts.map((contact) => {
+        if (contact.id === id) {
           return {
             id,
             ...updateContact,
-          };
+          }
         } else {
-          return user;
+          return contact
         }
-      });
-      return [...contacts];
+      })
+      return [...contacts]
     }
 
     // delete contact
-    case DELETE_CONTACT: {
-      const updateContacts = users.filter((user) => user.id !== payload);
-      return [...updateContacts];
+    case 'deleted': {
+      return contacts.filter((t) => t.id !== action.id)
     }
 
     default:
-      return users;
+      return contacts
   }
-};
+}
 
-export default contactReducer;
+export default contactReducer

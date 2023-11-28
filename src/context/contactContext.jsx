@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from 'react'
-import { ContactContext, ContactDispatchContext } from './contactContext'
 
 // create context
 export const ContactContext = createContext(null)
@@ -7,11 +6,11 @@ export const ContactDispatchContext = createContext(null)
 
 // create reducer
 import contactReducer from './contactReducer'
-import { initialContacts } from './initialContact'
+import { initialContact } from './initialContact'
 
 // create provider
 export const ContactProvider = ({ children }) => {
-  const [contacts, dispatch] = useReducer(contactReducer, initialContacts)
+  const [contacts, dispatch] = useReducer(contactReducer, initialContact)
 
   return (
     <ContactContext.Provider value={contacts}>

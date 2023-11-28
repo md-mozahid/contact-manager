@@ -1,26 +1,11 @@
-import { useContext, useState } from "react";
-import { ContactContext } from "../context/context";
+import { useState } from 'react'
+import { useContactsDispatch } from '../context/contactContext'
 
 const contactForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-  const { addContact, contacts, updateContact, isEditing } =
-    useContext(ContactContext);
-
-    // const { id } = useParams();
-
-    // const foundContact = contacts.find((contact) => contact.id === id);
-
-  const handleContact = (data) => {
-    const id = contacts?.id;
-
-    if (id) {
-      updateContact(data);
-    } else {
-      addContact(data);
-    }
-  };
+  const dispatch = useContactsDispatch()
 
   return (
     <>
@@ -42,14 +27,20 @@ const contactForm = () => {
         <button
           className="px-2 py-1 border rounded-md hover:bg-slate-500 tracking-wider"
           onClick={() => {
-            handleContact({ name, email }), setEmail(""), setName("");
-          }}
-        >
-          {isEditing ? "Update" : "Add"}
+            dispatch({
+              type: 'added',
+              name: name,
+              email: email,
+            }),
+              setEmail(''),
+              setName('')
+          }}>
+          {/* {isEditing ? 'Update' : 'Add'} */}
+          Add
         </button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default contactForm;
+export default contactForm

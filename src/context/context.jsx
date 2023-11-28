@@ -13,8 +13,8 @@ export const ContactProvider = ({ children }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   // handle add contact
-  const addContact = (text) => {
-    dispatch({ type: ADD_CONTACT, payload: text });
+  const addContact = (val) => {
+    dispatch({ type: ADD_CONTACT, payload: val });
   };
   // handle update contact
   const updateContact = (id, update) => {

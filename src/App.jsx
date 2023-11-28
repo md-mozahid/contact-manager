@@ -1,5 +1,5 @@
-import AddContactForm from './components/addContactForm'
-import ContactList from './components/contactList'
+import ContactForm from "./components/contactForm";
+import ContactList from "./components/contactList";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <div>
           <h1 className="text-3xl text-center">Contact Manager</h1>
           <div className="py-10 border-b border-[#be123c]">
-            <AddContactForm />
+            <ContactForm />
           </div>
           <div className="py-5 space-y-5">
             <ContactList />
@@ -16,7 +16,7 @@ function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

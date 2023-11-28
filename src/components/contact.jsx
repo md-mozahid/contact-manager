@@ -1,10 +1,10 @@
-import { useContext } from 'react'
-import { images } from '../constant'
-import { UserContext } from '../context/context'
+import { useContext } from "react";
+import { images } from "../constant";
+import { ContactContext } from "../context/context";
 
 const Contact = ({ user }) => {
-  const { deleteUser, setIsEditing } = useContext(UserContext)
-  const { id, name, email } = user
+  const { deleteContact, setIsEditing } = useContext(ContactContext);
+  const { id, name, email } = user;
   return (
     <>
       <h3 className="flex-1">Name : {name}</h3>
@@ -13,12 +13,12 @@ const Contact = ({ user }) => {
         <button onClick={() => setIsEditing(true)}>
           <img className="" src={images.Edit} alt="edit" />
         </button>
-        <button onClick={() => deleteUser(id)}>
+        <button onClick={() => deleteContact(id)}>
           <img className="" src={images.Delete} alt="delete" />
         </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -1,4 +1,4 @@
-import AddUser from './components/addUser'
+import AddContactForm from './components/addContactForm'
 import ContactList from './components/contactList'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         <div>
           <h1 className="text-3xl text-center">Contact Manager</h1>
           <div className="py-10 border-b border-[#be123c]">
-            <AddUser />
+            <AddContactForm />
           </div>
           <div className="py-5 space-y-5">
             <ContactList />

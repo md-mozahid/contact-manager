@@ -1,37 +1,40 @@
-import { createContext, useReducer, useState } from 'react'
-import userReducer from '../components/userReducer'
+import { createContext, useReducer, useState } from "react";
+import contactReducer from "./contactReducer";
+import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from "./actionTypes";
+
+const initialContact = [{ id: 1, name: "Ahnaf", email: "ahnaf@gmail.com" }];
 
 // create context
-export const UserContext = createContext()
+export const ContactContext = createContext();
 
 // create provider
-const initialUser = [{ id: 1, name: 'Md Muzahid', email: 'example@gmail.com' }]
-let nextId = 2
+export const ContactProvider = ({ children }) => {
+  const [contacts, dispatch] = useReducer(contactReducer, initialContact);
+  const [isEditing, setIsEditing] = useState(false);
 
-export const UserProvider = ({ children }) => {
-  const [users, dispatch] = useReducer(userReducer, initialUser) 
-  const [isEditing, setIsEditing] = useState(false)
+  // handle add contact
+  const addContact = (text) => {
+    dispatch({ type: ADD_CONTACT, payload: text });
+  };
+  // handle update contact
+  const updateContact = (id, update) => {
+    dispatch({ type: UPDATE_CONTACT, payload: { id, update } });
+  };
 
-  // handle add user
-  const addUser = (name, email) => {
-    if (name === '' || email === '') {
-      alert('Please fill the input value')
-    } else {
-      dispatch({ type: 'added', id: nextId++, name, email })
-    }
-  }
-
-  // delete user
-  const deleteUser = (userId) => {
-    dispatch({ type: 'delete', id: userId })
-  }
+  // delete contact
+  const deleteContact = (id) => {
+    dispatch({ type: DELETE_CONTACT, payload: id });
+  };
 
   const value = {
     isEditing,
     setIsEditing,
-    users,
-    addUser,
-    deleteUser,
-  }
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>
-}
+    contacts,
+    addContact,
+    updateContact,
+    deleteContact,
+  };
+  return (
+    <ContactContext.Provider value={value}>{children}</ContactContext.Provider>
+  );
+};

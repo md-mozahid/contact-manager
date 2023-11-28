@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
-import { UserContext } from '../context/context'
+import { ContactContext } from '../context/context'
 
-const AddUser = () => {
+const AddContactForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const { addUser, isEditing } = useContext(UserContext)
+  const { addContact, isEditing } = useContext(ContactContext)
 
   return (
     <>
@@ -27,7 +27,7 @@ const AddUser = () => {
         <button
           className="px-2 py-1 border rounded-md hover:bg-slate-500 tracking-wider"
           onClick={() => {
-            addUser(name, email), setEmail(''), setName('')
+            addContact(name, email), setEmail(""), setName("");
           }}>
           {isEditing ? 'Update' : 'Add'}
         </button>
@@ -36,4 +36,4 @@ const AddUser = () => {
   )
 }
 
-export default AddUser
+export default AddContactForm;

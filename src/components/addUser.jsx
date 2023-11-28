@@ -5,7 +5,7 @@ const AddUser = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const { addUser } = useContext(UserContext)
+  const { addUser, isEditing } = useContext(UserContext)
 
   return (
     <>
@@ -29,7 +29,7 @@ const AddUser = () => {
           onClick={() => {
             addUser(name, email), setEmail(''), setName('')
           }}>
-          Add
+          {isEditing ? 'Update' : 'Add'}
         </button>
       </div>
     </>

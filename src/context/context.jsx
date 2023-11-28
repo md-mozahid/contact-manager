@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useState } from 'react'
 import userReducer from '../components/userReducer'
 
 // create context
@@ -9,11 +9,16 @@ const initialUser = [{ id: 1, name: 'Md Muzahid', email: 'example@gmail.com' }]
 let nextId = 2
 
 export const UserProvider = ({ children }) => {
-  const [users, dispatch] = useReducer(userReducer, initialUser)
+  const [users, dispatch] = useReducer(userReducer, initialUser) 
+  const [isEditing, setIsEditing] = useState(false)
 
   // handle add user
   const addUser = (name, email) => {
-    dispatch({ type: 'added', id: nextId++, name, email })
+    if (name === '' || email === '') {
+      alert('Please fill the input value')
+    } else {
+      dispatch({ type: 'added', id: nextId++, name, email })
+    }
   }
 
   // delete user
@@ -22,6 +27,8 @@ export const UserProvider = ({ children }) => {
   }
 
   const value = {
+    isEditing,
+    setIsEditing,
     users,
     addUser,
     deleteUser,

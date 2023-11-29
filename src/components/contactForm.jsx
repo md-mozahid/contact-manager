@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { useContactsDispatch } from '../context/contactContext'
+import { useState } from "react";
+import { useContactsDispatch } from "../context/contactContext";
+import { addContact } from "../context/actions";
 
 const contactForm = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const dispatch = useContactsDispatch()
+  const dispatch = useContactsDispatch();
 
   return (
     <>
@@ -27,20 +28,16 @@ const contactForm = () => {
         <button
           className="px-2 py-1 border rounded-md hover:bg-slate-500 tracking-wider"
           onClick={() => {
-            dispatch({
-              type: 'added',
-              name: name,
-              email: email,
-            }),
-              setEmail(''),
-              setName('')
-          }}>
+            dispatch(addContact({name, email}));
+            setEmail(""), setName("");
+          }}
+        >
           {/* {isEditing ? 'Update' : 'Add'} */}
           Add
         </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default contactForm
+export default contactForm;

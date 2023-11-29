@@ -1,10 +1,11 @@
-import { images } from '../constant'
-import { useContactsDispatch } from '../context/contactContext'
+import { images } from "../constant";
+import { useContactsDispatch } from "../context/contactContext";
+import { deleteContact } from "../context/actions";
 
 const Contact = ({ contact }) => {
-  const dispatch = useContactsDispatch()
-  const { id, name, email } = contact
-
+  const dispatch = useContactsDispatch();
+  const { id, name, email } = contact;
+console.log(id)
   return (
     <>
       <h3 className="flex-1">Name : {name}</h3>
@@ -15,18 +16,12 @@ const Contact = ({ contact }) => {
         >
           <img className="" src={images.Edit} alt="edit" />
         </button>
-        <button
-          onClick={() => {
-            dispatch({
-              type: 'deleted',
-              id: id,
-            })
-          }}>
+        <button onClick={() => dispatch(deleteContact(id))}>
           <img className="" src={images.Delete} alt="delete" />
         </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

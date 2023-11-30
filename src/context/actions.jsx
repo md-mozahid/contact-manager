@@ -1,10 +1,18 @@
-import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from "./actionTypes";
+import {
+  ADD_CONTACT,
+  UPDATE_CONTACT,
+  DELETE_CONTACT,
+  EDIT_CONTACT,
+} from "./actionTypes";
 
 // handle add contact
 export const addContact = (newVal) => {
   return { type: ADD_CONTACT, payload: newVal };
 };
-
+// edit contact
+export const editContact = (payload) => {
+  return { type: EDIT_CONTACT, payload };
+};
 // handle update contact
 export const updateContact = (payload) => {
   return { type: UPDATE_CONTACT, payload };

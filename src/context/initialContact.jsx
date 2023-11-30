@@ -2,7 +2,9 @@
 export const initialContact = () =>
   JSON.parse(
     window.localStorage.getItem("contacts") ||
-      JSON.stringify([{ id: 1, name: "Ahnaf", email: "ahnaf@gmail.com" }])
+      JSON.stringify([
+        { id: 1, name: "Ahnaf", email: "ahnaf@gmail.com", editable: false },
+      ])
   );
 
 //  set data to local storage

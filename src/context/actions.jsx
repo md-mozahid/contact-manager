@@ -6,8 +6,8 @@ export const addContact = (newVal) => {
 };
 
 // handle update contact
-export const updateContact = (id, updateContact) => {
-  return { type: UPDATE_CONTACT, payload: { id, updateContact } };
+export const updateContact = (payload) => {
+  return { type: UPDATE_CONTACT, payload };
 };
 
 // delete contact

@@ -10,21 +10,7 @@ import { initialContact } from './initialContact'
 
 // create provider
 export const ContactProvider = ({ children }) => {
-  const [contacts, dispatch] = useReducer(contactReducer, initialContact)
-
-  // local storage
-  // get item
-  useEffect(() => {
-    const contact = JSON.parse(localStorage.getItem('contact'))
-    if (contact) {
-      dispatch(contact)
-    }
-  }, [])
-
-  // set item
-  useEffect(() => {
-    localStorage.setItem('contact', JSON.stringify(contacts))
-  }, [contacts])
+  const [contacts, dispatch] = useReducer(contactReducer, initialContact())
 
   return (
     <ContactContext.Provider value={contacts}>

@@ -64,7 +64,6 @@ const contactForm = () => {
             setEmail(""), setName("");
           }}
         >
-          {/* {isEditing ? 'Update' : 'Add'} */}
           {submitBtn.name}
         </button>
       </div>

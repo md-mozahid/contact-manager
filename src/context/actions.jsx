@@ -6,8 +6,8 @@ import {
 } from "./actionTypes";
 
 // handle add contact
-export const addContact = (newVal) => {
-  return { type: ADD_CONTACT, payload: newVal };
+export const addContact = (payload) => {
+  return { type: ADD_CONTACT, payload };
 };
 // edit contact
 export const editContact = (payload) => {
